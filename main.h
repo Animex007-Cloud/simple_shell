@@ -113,7 +113,7 @@ void sfree(char **);
 int buffree(void **);
 void free_list(list_t **);
 char **token(char *, char *);
-char **tokens(char *, char);
+char **token2(char *, char);
 int de_lim(char, char *);
 int rmoniker(infos_t *);
 char *_strdup(const char *);
