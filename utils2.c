@@ -49,7 +49,7 @@ int rvars(infos_t *info)
 	{
 		if (info->argv[a][0] != '$' || !info->argv[a][1])
 			continue;
-		
+
 		if (!_strcmp(info->argv[a], "$?"))
 		{
 			rstr(&(info->argv[a]), _strdup(converter(info->stats, 10, 0)));
