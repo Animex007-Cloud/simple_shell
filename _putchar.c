@@ -10,5 +10,15 @@
 
 int _putchar(char c)
 {
-	return (write(1, &c, 1));
+	static int a;
+	static char buff[WRITE_BUFF_SIZE];
+
+	if (c == BUFF_FLUSH || a >= WRITE_BUFF_SIZE)
+	{
+		write(1, buff, a);
+		a = 0;
+	}
+	if (c != BUFF_FLUSH)
+		buff[++a] = c;
+	return (a);
 }
