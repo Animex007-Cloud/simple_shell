@@ -25,7 +25,7 @@
 #define HISTORY_MAX	4096
 
 #define LOWERCASE	1
-#define UNSIGNED	2
+#define CON_UNSIGNED	2
 
 #define GETLINE		0
 #define STRTOK		0
