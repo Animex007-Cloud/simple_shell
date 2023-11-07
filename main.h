@@ -118,7 +118,6 @@ int de_lim(char, char *);
 int rmoniker(infos_t *);
 char *_strdup(const char *);
 void _puts(char *);
-int _putchar(char);
 int rvars(infos_t *);
 char *_strncat(char *, char *, int);
 char *_strchr(char *, char);
@@ -127,5 +126,12 @@ int rstr(char **, char *);
 int is_chain(infos_t *, char *, size_t *);
 void if_chain(infos_t *, char *, size_t *, size_t, size_t);
 int shell_exit(infos_t *);
+int interactive(infos_t *);
+int _isalpha(int);
+int _atoi(char *);
+void print_err(infos_t *, char *);
+int print_dec(int, int);
+int err_atoi(char *);
+char *converter(long int, int, int);
 
 #endif
