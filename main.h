@@ -133,5 +133,8 @@ void print_err(infos_t *, char *);
 int print_dec(int, int);
 int err_atoi(char *);
 char *converter(long int, int, int);
+int _strlen(char *);
+char *_strcat(char *, char *);
+char *init(const char *, const char *);
 
 #endif
