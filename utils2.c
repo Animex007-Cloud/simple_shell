@@ -24,7 +24,7 @@ int rmoniker(infos_t *info)
 		c = _strchr(node->str, '=');
 		if (!c)
 			return (0);
-		c = _strchr(c + 1);
+		c = _strdup(c + 1);
 		if (!c)
 			return (0);
 		info->argv[0] = c;

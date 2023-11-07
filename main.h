@@ -136,5 +136,11 @@ char *converter(long int, int, int);
 int _strlen(char *);
 char *_strcat(char *, char *);
 char *init(const char *, const char *);
-
+char *_memset(char *, char, unsigned int);
+void *_realloc(void *, unsigned int, unsigned int);
+list_t *plus_node(list_t **, const char *, int);
+list_t *plus_node_last(list_t **, const char *, int);
+int remove_node(list_t **, unsigned int);
+size_t print_list_str(const list_t *);
+list_t *node_init(list_t *, char *, char);
 #endif
