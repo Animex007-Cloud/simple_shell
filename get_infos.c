@@ -79,7 +79,7 @@ void set_infos(infos_t *info, char **av)
 			;
 		info->argc = a;
 
-		rmoniker(info);
+		ralias(info);
 		rvars(info);
 	}
 }
