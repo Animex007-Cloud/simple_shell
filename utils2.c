@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * rmoniker - Entry point
+ * ralias - Entry point
  * Description: A function that replace entity with a tokenized string.
  *
  * @info: the struct to check and be replaced.
  * Return: 1 on success and 0 if failed
  */
 
-int rmoniker(infos_t *info)
+int ralias(infos_t *info)
 {
 	int a;
 	list_t *node;
@@ -16,7 +16,7 @@ int rmoniker(infos_t *info)
 
 	for (a = 0; a < 10; ++a)
 	{
-		node = node_init(info->moniker, info->argv[0], '=');
+		node = node_init(info->alias, info->argv[0], '=');
 		if (!node)
 			return (0);
 		free(info->argv[0]);

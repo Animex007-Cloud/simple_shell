@@ -38,8 +38,8 @@ void free_infos(infos_t *info, int entire)
 			free_list(&(info->env));
 		if (info->history)
 			free_list(&(info->history));
-		if (info->moniker)
-			free_list(&(info->moniker));
+		if (info->alias)
+			free_list(&(info->alias));
 		sfree(info->environ);
 		info->environ = NULL;
 		buffree((void **)info->cmd_buff);

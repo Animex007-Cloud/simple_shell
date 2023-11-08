@@ -57,7 +57,7 @@ typedef struct list_s
  * @err_num: returns exit number.
  * @linecount_flag: line of input.
  * @file_name: program file name.
- * @moniker: the node alias.
+ * @alias: the node alias.
  * @env_changed: switch mode if environment changed.
  * @history: the history node.
  * @stats: the return status value of executed command.
@@ -78,7 +78,7 @@ typedef struct infos
 	int err_num;
 	int linecount_flag;
 	char *file_name;
-	list_t *moniker;
+	list_t *alias;
 	int env_changed;
 	list_t *history;
 	int stats;
@@ -115,7 +115,7 @@ void free_list(list_t **);
 char **token(char *, char *);
 char **token2(char *, char);
 int de_lim(char, char *);
-int rmoniker(infos_t *);
+int ralias(infos_t *);
 char *_strdup(const char *);
 void _puts(char *);
 int rvars(infos_t *);
@@ -143,4 +143,6 @@ list_t *plus_node_last(list_t **, const char *, int);
 int remove_node(list_t **, unsigned int);
 size_t print_list_str(const list_t *);
 list_t *node_init(list_t *, char *, char);
+int env_list(infos_t *);
+
 #endif
