@@ -140,9 +140,9 @@ char *converter(long int i, int base, int flag)
 	c = '\0';
 
 	do {
-		*c-- = ptr[i % base];
-		i /= base;
-	} while (i != 0);
+		*c-- = ptr[n % base];
+		n /= base;
+	} while (n != 0);
 
 	if (sign)
 		*c-- = sign;

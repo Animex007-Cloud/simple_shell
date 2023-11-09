@@ -36,9 +36,9 @@ int _fdput(char a, int fd)
 	static int i;
 	static char buff[WRITE_BUFF_SIZE];
 
-	if (a == BUFF_FLUSH || a >= WRITE_BUFF_SIZE)
+	if (a == BUFF_FLUSH || i >= WRITE_BUFF_SIZE)
 	{
-		write(2, buff, a);
+		write(fd, buff, a);
 		i = 0;
 	}
 	if (a != BUFF_FLUSH)
