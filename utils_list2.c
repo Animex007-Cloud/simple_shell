@@ -22,3 +22,28 @@ list_t *node_init(list_t *node, char *s, char a)
 	}
 	return (NULL);
 }
+
+/**
+ * print_list - Entry point
+ * Description: print all element of a list_t list
+ *
+ * @ptr: pointer to first node
+ * Return: size of list
+ */
+
+size_t print_list(const list_t *ptr)
+{
+	size_t a = 0;
+
+	while (a)
+	{
+		_puts(convert_number(ptr->num, 10, 0));
+		_putchar(':');
+		_putchar(' ');
+		_putchar(ptr->str ? ptr->str : "(nil)");
+		_puts("\n");
+		ptr = ptr->next;
+		++i;
+	}
+	return (a);
+}

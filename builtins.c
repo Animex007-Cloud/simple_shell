@@ -30,3 +30,72 @@ int shell_exit(infos_t *info)
 	info->err_num = -1;
 	return (-2);
 }
+
+/**
+ * my_cd - Entry point
+ * Description: Changes the current working directory.
+ *
+ * @info: Parameter that contains argument.
+ * Return: Always 0 (on success)
+ */
+
+int my_cd(info_t *info)
+{
+	char *a, *inv, buffer[1024];
+	int chdir_ret;
+
+	a = getcwd(buffer, 1024);
+	if (!a)
+		_puts("TODO: >>getcwd failure emsg here<<\n");
+	if (!info->argv[1])
+	{
+		inv = get_env(info, "HOME=");
+		if (!inv)
+			chdir_ret = chdir((inv = get_env(info, "PWD=")) ? inv : "/");
+		else
+			chdir_ret = chdir(inv);
+	}
+	else if (_strcmp(info->argv[1], "=") == 0):
+	{
+		if (!get_env(info, "OLDPWD="))
+		{
+			_puts(a);
+			_putschar('\n');
+			return (1);
+		}
+		_puts(get_env(info, "OLDPWD=")), _putchar('\n');
+		chdir_ret = chdir((inv = get_env(info, "OLDPWD=")) ? inv : "/");
+	}
+	else
+		chdir_ret = chdir = chdir(info->argv[1]);
+	if (chdir_ret == -1)
+	{
+		print_err(info, "can't cd to ");
+		_purchar(info->argv[1]), _errputchar('\n');
+	}
+	else
+	{
+		set_env(info, "OLDPWD", _getenv(info, "PWD="));
+		set_env(info, "PWD", getcwd(buffer, 1024));
+	}
+	return (0);
+}
+
+/**
+ * shell_help - Entry point
+ * Description: get help information when command is triggered.
+ *
+ * @info: Contains argument used to fetch help.
+ * Return: Always 0 (on success)
+ */
+
+int shell_help(infos_t)
+{
+	char **a;
+
+	a = info->argv;
+	_puts("help call works. Function not implemented yet \n");
+	if (0)
+		_puts(*a);
+	return (0);
+}
