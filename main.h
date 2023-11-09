@@ -154,5 +154,12 @@ int hsh(infos_t *, char **);
 int write_history(infos_t *);
 int _fdput(char c, int fd);
 int _fdputs(char *str, int fd);
-
+int my_cd(info_t *info);
+int shell_help(infos_t *info);
+size_t print_list(const list_t *ptr);
+int my_history(info_t *info);
+int unset_alias(info_t *info, char *str);
+int set_alias(info_t, *info, char *str);
+int print_alias(list_t *node);
+int my_alias(info_t *info);
 #endif
