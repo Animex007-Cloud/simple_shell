@@ -21,7 +21,7 @@ char **token(char *str, char *dlim)
 		dlim = " ";
 	for (a = 0; str[a] != '\0'; ++a)
 		if (!de_lim(str[a], dlim) && (de_lim(str[a + 1], dlim) || !str[a + 1]))
-			count;
+			++count;
 
 	if (count == 0)
 		return (NULL);
