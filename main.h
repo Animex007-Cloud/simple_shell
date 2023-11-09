@@ -89,7 +89,7 @@ typedef struct infos
 } infos_t;
 
 #define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
+{NULL, NULL, NULL, 0, NULL, NULL, 0, 0, 0, NULL, NULL, 0, NULL, 0, NULL, \
 	0, 0, 0}
 
 /**
@@ -147,5 +147,12 @@ int env_list(infos_t *);
 int reindex_history(infos_t *);
 int build_history_list(infos_t *, char *, int);
 char *get_history_file(infos_t *);
+char *get_env(infos_t *, const char *);
+char *_strcpy(char *, char *);
+int read_history(infos_t *);
+int hsh(infos_t *, char **);
+int write_history(infos_t *);
+int _fdput(char c, int fd);
+int _fdputs(char *str, int fd);
 
 #endif

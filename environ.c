@@ -29,7 +29,7 @@ int env_list(infos_t *info)
  */
 char *get_env(infos_t *info, const char *moniker)
 {
-	list_t *node = info->str;
+	list_t *node = info->env;
 	char *c;
 
 	while (node)

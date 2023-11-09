@@ -55,3 +55,26 @@ char *init(const char *str, const char *sub)
 			return (NULL);
 	return ((char *)str);
 }
+
+/**
+ * _strcpy - Entry point
+ * @dest: the destination which string will be copied.
+ * @src: the source of the string to copy string from.
+ *
+ * Description: copy string from source to destination.
+ * Return: pointer of dest.
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int a = 0;
+
+	if (dest == src || src == 0)
+		return (dest);
+	while (src[a])
+	{
+		dest[a] = src[a];
+		++a;
+	}
+	dest[a] = 0;
+	return (dest);
+}

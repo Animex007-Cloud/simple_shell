@@ -116,3 +116,36 @@ char *get_history_file(infos_t *info)
 	_strcat(bf, HISTORY_FILE);
 	return (bf);
 }
+
+/**
+ * write_history - Entry point
+ * @info: the parameter that contains argument.
+ *
+ * Description: create an history file or append the existing
+ * history file.
+ *
+ * Return: 1 (On Success), else -1 if error occurs.
+ */
+int write_history(infos_t *info)
+{
+	ssize_t fd;
+	char *fname = get_history_file(info);
+	list_t *node = NULL;
+
+	if (!fname)
+		return (-1);
+
+	fd = open(fname, O_CREAT | O_TRUNC | O_RDWR | 0644);
+	free(fname);
+	if (fd == -1)
+		return (-1);
+	for (node = info->history; node; node = node->next)
+	{
+		_fdputs(node->str, fd);
+		_fdput('\n', fd);
+	}
+
+	_fdput(BUFF_FLUSH, fd);
+	close(fd);
+	return (1);
+}
