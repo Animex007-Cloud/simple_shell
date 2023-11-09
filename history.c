@@ -50,3 +50,69 @@ int read_history(infos_t *info)
 	reindex_history(info);
 	return (info->history_count);
 }
+
+/**
+ * reindex_history - Entry point
+ * @info: parameter that contains argument.
+ *
+ * Description: index the history.
+ * Return: the new history index
+ */
+int reindex_history(infos_t *info)
+{
+	list_t *node = info->history;
+	int a = 0;
+
+	while (node)
+	{
+		node->i = ++a;
+		node = node->next;
+	}
+	return (info->history_count = a);
+}
+
+/**
+ * build_history_list - Entry point
+ * @info: parameter that contains argument.
+ * @buff: buffer
+ * @linecount_flag: the history line count from history_count.
+ *
+ * Description: adds entry to history.
+ * Return: Always 0 (On Success)
+ */
+int build_history_list(infos_t *info, char *buff, int linecount_flag)
+{
+	list_t *node = NULL;
+
+	if (info->history)
+		node = info->history;
+	plus_node_last(&node, buff, linecount_flag);
+
+	if (!info->history)
+		info->history = node;
+	return (0);
+}
+
+/**
+ * get_history_file - Entry point
+ * @info: parameter that contains argument.
+ *
+ * Description: fetch the history file from source.
+ * Return: string from allocated history file.
+ */
+char *get_history_file(infos_t *info)
+{
+	char *bf/*buffer*/, *inv;
+
+	inv = get_env(info, "HOME=");
+	if (!inv)
+		return (NULL);
+	bf = malloc(sizeof(char) * (_strlen(inv) + _strlen(HISTORY_FILE) + 2));
+	if (!bf)
+		return (NULL);
+	bf[0] = 0;
+	_strcpy(bf, inv);
+	_strcat(bf, "/");
+	_strcat(bf, HISTORY_FILE);
+	return (bf);
+}

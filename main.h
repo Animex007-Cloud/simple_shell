@@ -144,5 +144,8 @@ int remove_node(list_t **, unsigned int);
 size_t print_list_str(const list_t *);
 list_t *node_init(list_t *, char *, char);
 int env_list(infos_t *);
+int reindex_history(infos_t *);
+int build_history_list(infos_t *, char *, int);
+char *get_history_file(infos_t *);
 
 #endif

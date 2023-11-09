@@ -17,3 +17,27 @@ int env_list(infos_t *info)
 	info->env = node;
 	return (0);
 }
+
+/**
+ * get_env - Entry point
+ * @info: parameter that contains arguments.
+ * @moniker: env name
+ *
+ * Description: gets value from an environ.
+ * Return: the value of env when successful,
+ * NULL if no value exit.
+ */
+char *get_env(infos_t *info, const char *moniker)
+{
+	list_t *node = info->str;
+	char *c;
+
+	while (node)
+	{
+		c = init(node->str, moniker);
+		if (c && *c)
+			return (c);
+		node = node->next;
+	}
+	return (NULL);
+}
