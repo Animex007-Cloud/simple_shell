@@ -8,9 +8,9 @@
  * Return: Always 0 (On success)
  */
 
-int my_histoty(info_t *info)
+int my_history(infos_t *info)
 {
-	print_int(info->history);
+	print_list(info->history);
 	return (0);
 }
 
@@ -23,7 +23,7 @@ int my_histoty(info_t *info)
  * Return: Always 0 on success, 1 on error
  */
 
-int unset_alias(info_t *info, char *str)
+int unset_alias(infos_t *info, char *str)
 {
 	char *ptr, a;
 	int ret;
@@ -32,34 +32,9 @@ int unset_alias(info_t *info, char *str)
 	if (!ptr)
 		return (1);
 	a = *ptr;
-	*p = 0;
-	ret = rempve_node(&(info->alias),
-			get_node(info->alias, node_init(info->alias, str, -1)));
-	*ptr = a;
-	return (ret);
-}
-
-/**
- * set_alias - Entry point
- * Description: set alias to a string
- *
- * @info: parameter containing arguments
- * @str: the string alias
- * Return: Always 0 on success, 1 on error
- */
-
-int unset_alias(info_t  char *str)
-{
-	char *ptr, a;
-	int ret;
-
-	ptr = _strchr(str, '=');
-	if (!ptr)
-		return (1);
-	a = *ptr;
-	*p = 0;
+	*ptr = 0;
 	ret = remove_node(&(info->alias),
-			get_node(info->alias, node_init(info->alias, str, -1)));
+		get_node(info->alias, node_init(info->alias, str, -1)));
 	*ptr = a;
 	return (ret);
 }
@@ -69,15 +44,15 @@ int unset_alias(info_t  char *str)
  * Description: set alias to string.
  *
  * @info: parameter containing struct/arguments
- * @str: tge string alias
+ * @str: the string alias
  * Return: Always 0 on success, 1 on error
  */
 
-int set_alias(info_t *info, char *str)
+int set_alias(infos_t *info, char *str)
 {
 	char *ptr;
 
-	tr = _strchr(str, '=');
+	ptr = _strchr(str, '=');
 	if (!ptr)
 		return (1);
 	if (!*++ptr)
@@ -105,7 +80,7 @@ int print_alias(list_t *node)
 		for (i = node->str; i <= ptr; ++i)
 			_putchar(*i);
 		_putchar('\'');
-		_puts(ptr| + 1);
+		_puts(ptr + 1);
 		_puts("'\n");
 		return (0);
 	}
@@ -114,11 +89,12 @@ int print_alias(list_t *node)
 
 /**
  * my_alias - Entry point
+ * @info: contains argument
  * Description: imitates the original alias (do man alias)
  * Return: Always 0 (On Success)
  */
 
-int my_alias(info_t *info)
+int my_alias(infos_t *info)
 {
 	int a = 0;
 	char *ptr = NULL;

@@ -37,13 +37,13 @@ size_t print_list(const list_t *ptr)
 
 	while (a)
 	{
-		_puts(convert_number(ptr->num, 10, 0));
+		_puts(converter(ptr->i, 10, 0));
 		_putchar(':');
 		_putchar(' ');
-		_putchar(ptr->str ? ptr->str : "(nil)");
+		_puts(ptr->str ? ptr->str : "(nil)");
 		_puts("\n");
 		ptr = ptr->next;
-		++i;
+		++a;
 	}
 	return (a);
 }
