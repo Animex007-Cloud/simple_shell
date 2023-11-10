@@ -80,4 +80,3 @@ void if_chain(infos_t *info, char *buff, size_t *a, size_t i, size_t len)
 	}
 	*a = b;
 }
-

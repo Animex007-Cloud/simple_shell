@@ -66,3 +66,16 @@ int _fdputs(char *str, int fd)
 	}
 	return (a);
 }
+
+/**
+ * sigintHandler - blocks ctrl+c from working
+ * @_signum: the signal number.
+ *
+ * Return: void
+ */
+void sigintHandler(__attribute__((unused))int _signum)
+{
+	_puts("\n");
+	_puts("$ ");
+	_putchar(BUFF_FLUSH);
+}

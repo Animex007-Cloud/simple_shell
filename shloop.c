@@ -102,8 +102,8 @@ int s_builtins(infos_t *info)
 		{"env", my_env},
 		{"help", shell_help},
 		{"history", my_history},
-		{"setenv",my_setenv},
-		{"unsetenv",my_unsetenv},
+		{"setenv", my_setenv},
+		{"unsetenv", my_unsetenv},
 		{"cd", my_cd},
 		{"alias", my_alias},
 		{NULL, NULL}
@@ -117,4 +117,47 @@ int s_builtins(infos_t *info)
 			break;
 		}
 	return (builtin_ret);
+}
+
+/**
+ * s_cmd - Entry point
+ * @info: the paramter that contatins argument.
+ *
+ * Description: search for commain in PATH
+ * Return: nothing.
+ */
+void s_cmd(infos_t *info)
+{
+	char *path = NULL;
+	int a, b;
+
+	info->path = info->argv[0];
+	if (info->linecount_flag == 1)
+	{
+		info->err_count++;
+		info->linecount_flag;
+	}
+	for (a = 0, b = 0; info->args[a]; a++)
+		if (!de_lim(info->args[a], " \t\n"))
+			++b;
+	if (!b)
+		return;
+
+	path = f_path(info, get_env(info, "PATH="), info->argv[0]);
+	if (path)
+	{
+		info->path = path;
+		fork_cmd(info);
+	}
+	else
+	{
+		if ((interactive(info) || get_env(info, "PATH=")
+			|| info->argv[0][0] == '/') && _iscmd(info, info->argv[0]))
+			fork_cmd(info);
+		else if (*(info->args) != '\n')
+		{
+			info->stats = 127;
+			print_err(info, "not found\n");
+		}
+	}
 }
