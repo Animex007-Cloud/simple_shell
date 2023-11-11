@@ -39,7 +39,7 @@ int shell_exit(infos_t *info)
  * Return: Always 0 (on success)
  */
 
-int my_cd(info_t *info)
+int my_cd(infos_t *info)
 {
 	char *a, *inv, buffer[1024];
 	int chdir_ret;
@@ -55,27 +55,27 @@ int my_cd(info_t *info)
 		else
 			chdir_ret = chdir(inv);
 	}
-	else if (_strcmp(info->argv[1], "=") == 0):
+	else if (_strcmp(info->argv[1], "-") == 0)
 	{
 		if (!get_env(info, "OLDPWD="))
 		{
 			_puts(a);
-			_putschar('\n');
+			_putchar('\n');
 			return (1);
 		}
 		_puts(get_env(info, "OLDPWD=")), _putchar('\n');
 		chdir_ret = chdir((inv = get_env(info, "OLDPWD=")) ? inv : "/");
 	}
 	else
-		chdir_ret = chdir = chdir(info->argv[1]);
+		chdir_ret = chdir(info->argv[1]);
 	if (chdir_ret == -1)
 	{
 		print_err(info, "can't cd to ");
-		_purchar(info->argv[1]), _errputchar('\n');
+		_puts(info->argv[1]), _errputchar('\n');
 	}
 	else
 	{
-		set_env(info, "OLDPWD", _getenv(info, "PWD="));
+		set_env(info, "OLDPWD", get_env(info, "PWD="));
 		set_env(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
@@ -89,7 +89,7 @@ int my_cd(info_t *info)
  * Return: Always 0 (on success)
  */
 
-int shell_help(infos_t)
+int shell_help(infos_t *info)
 {
 	char **a;
 
