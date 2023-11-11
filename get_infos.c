@@ -83,3 +83,22 @@ void set_infos(infos_t *info, char **av)
 		rvars(info);
 	}
 }
+
+/**
+ * delete_commentary - Entry point
+ * @buff: the specific pointer of the string to be appended.
+ * Description: function that replace '#' with '\0'.
+ *
+ * Return: Nothing.
+ */
+void delete_commentary(char *buff)
+{
+	int a;
+
+	for (a = 0; buff[a] != '\0'; ++a)
+		if (buff[a] == '#' && (!a || buff[a - 1] == ' '))
+		{
+			buff[a] = '\0';
+			break;
+		}
+}

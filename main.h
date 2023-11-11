@@ -177,5 +177,12 @@ size_t list_len(const list_t *);
 char *chars_x(char *, int, int);
 int _iscmd(infos_t *, char *);
 char *f_path(infos_t *, char *, char *);
+ssize_t _getinput(infos_t *);
+int _getline(infos_t *, char **, size_t *);
+ssize_t read_buff(infos_t *, char *, size_t *);
+char *_strncpy(char *, char *, int);
+ssize_t _inputbuff(infos_t *, char **, size_t *);
+void delete_commentary(char *);
+void sigintHandler(int);
 
 #endif

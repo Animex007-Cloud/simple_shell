@@ -78,3 +78,36 @@ char *_strcpy(char *dest, char *src)
 	dest[a] = 0;
 	return (dest);
 }
+
+/**
+ * _strncpy - Entry point
+ * @dest: the destination which string will be copied.
+ * @src: the source of the string to copy string from.
+ * @c: the amount of characters to be copied from src to dest.
+ *
+ * Description: function that copies string from source to destination.
+ * Return: the pointer to dest.
+ */
+char *_strncpy(char *dest, char *src, int c)
+{
+	int a, b;
+	char *ptr = dest;
+
+	a = 0;
+	while (src[a] != '\0' && a < c - 1)
+	{
+		dest[a] = src[a];
+		++a;
+	}
+	if (a < c)
+	{
+		b = a;
+		while (b < c)
+		{
+			dest[b] = '\0';
+			b++;
+		}
+	}
+
+	return (ptr);
+}

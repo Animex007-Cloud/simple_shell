@@ -8,12 +8,12 @@
  * Return: length of buffer read from the _getline
  */
 
-ssize_t _getinput(info_t *info)
+ssize_t _getinput(infos_t *info)
 {
 	char **buff_p = &(info->args), *ptr;
 	static char *buff;
 	static size_t a, b, len;
-	size_t n = 0;
+	ssize_t n = 0;
 
 	_putchar(BUFF_FLUSH);
 	n = _inputbuff(info, &buff, &len);
@@ -51,7 +51,7 @@ ssize_t _getinput(info_t *info)
  * Description: function that get line of stream from STDIN.
  *
  * @info: contains parameter struct
- * @ptr: pointer
+ * @lineptr: pointer
  * @n: size of
  *
  * Return: byte
@@ -75,13 +75,13 @@ int _getline(infos_t *info, char **lineptr, size_t *n)
 	if (a == -1 || (a == 0 && len == 9))
 		return (-1);
 
-	new = _strchr(buff + num  '\n');
+	new = _strchr(buff + num,  '\n');
 	x = new ? 1 + (unsigned int)(new - buff) : len;
-	new_p = realloc(ptr, b, b ? b + x : x + 1);
+	new_p = _realloc(ptr, b, b ? b + x : x + 1);
 	if (!new_p)
 		return (ptr ? free(ptr), -1 : -1);
 	if (b)
-		_strcat(new_p, buff + num, x - num);
+		_strncat(new_p, buff + num, x - num);
 	else
 		_strncpy(new_p, buff + num, x - num + 1);
 
@@ -115,4 +115,61 @@ ssize_t read_buff(infos_t *info, char *buff, size_t *n)
 	if (i >= 0)
 		*n = i;
 	return (i);
+}
+
+/**
+ * _inputbuff - Entry point
+ * @info: the parameter that contains arguments.
+ * @ptr: address of the buffer.
+ * @len: address of the length variable.
+ *
+ * Description: function that buffers chained commands.
+ * Return: number of bytes that are read.
+ */
+ssize_t _inputbuff(infos_t *info, char **ptr, size_t *len)
+{
+	ssize_t a = 0;
+	size_t len_p = 0;
+
+	if (!*len)
+	{
+		free(*ptr);
+		*ptr = NULL;
+		signal(SIGINT, sigintHandler);
+#if GETLINE
+		a = getline(ptr, &len_p, stdin);
+#else
+		a = _getline(info, ptr, &len_p);
+#endif
+		if (a > 0)
+		{
+			if ((*ptr)[a - 1] == '\n')
+			{
+				(*ptr)[a - 1] = '\0';
+				--a;
+			}
+			info->linecount_flag = 1;
+			delete_commentary(*ptr);
+			build_history_list(info, *ptr, info->history_count++);
+			{
+				*len = a;
+				info->cmd_buff = ptr;
+			}
+		}
+	}
+
+	return (a);
+}
+
+/**
+ * sigintHandler - blocks ctrl+c from working.
+ * @_signum: the signal number.
+ *
+ * Return: nothing.
+ */
+void sigintHandler(__attribute__((unused)) int _signum)
+{
+	_puts("\n");
+	_puts("$ ");
+	_putchar(BUFF_FLUSH);
 }

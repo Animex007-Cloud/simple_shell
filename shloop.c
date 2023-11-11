@@ -135,7 +135,7 @@ void s_cmd(infos_t *info)
 	if (info->linecount_flag == 1)
 	{
 		info->err_count++;
-		info->linecount_flag;
+		info->linecount_flag = 0;
 	}
 	for (a = 0, b = 0; info->args[a]; a++)
 		if (!de_lim(info->args[a], " \t\n"))

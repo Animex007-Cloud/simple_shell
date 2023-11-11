@@ -59,7 +59,7 @@ char *f_path(infos_t *info, char *str, char *cmd)
 	int a, b = 0;
 	char *path;
 
-	if(!str)
+	if (!str)
 		return (NULL);
 	if ((_strlen(cmd) > 2) && init(cmd, "./"))
 	{
