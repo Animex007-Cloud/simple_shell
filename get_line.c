@@ -94,3 +94,25 @@ int _getline(infos_t *info, char **lineptr, size_t *n)
 	*lineptr = ptr;
 	return (b);
 }
+
+/**
+ * read_buff - Entry point
+ * Description: function that reads from the buffer
+ *
+ * @info: contains parameter struct
+ * @buff: buffer to read frp
+ * @n: size of bytes
+ * Return: size of bytes from buffer.
+ */
+
+ssize_t read_buff(infos_t *info, char *buff, size_t *n)
+{
+	ssize_t i = 0;
+
+	if (*n)
+		return (0);
+	i = read(info->read_fd, buff, READ_BUFF_SIZE);
+	if (i >= 0)
+		*n = i;
+	return (i);
+}
