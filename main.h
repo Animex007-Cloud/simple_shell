@@ -184,5 +184,6 @@ char *_strncpy(char *, char *, int);
 ssize_t _inputbuff(infos_t *, char **, size_t *);
 void delete_commentary(char *);
 void sigintHandler(int);
+void _errputs(char *);
 
 #endif

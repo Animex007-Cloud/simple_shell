@@ -54,15 +54,15 @@ int hsh(infos_t *info, char **av)
  */
 void fork_cmd(infos_t *info)
 {
-	pid_t c_pid;
+	pid_t ppid;
 
-	c_pid = fork();
-	if (c_pid == -1)
+	ppid = fork();
+	if (ppid == -1)
 	{
 		perror("Error:");
 		return;
 	}
-	if (c_pid == 0)
+	if (ppid == 0)
 	{
 		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{

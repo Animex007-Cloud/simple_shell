@@ -34,13 +34,13 @@ int _errputchar(char c)
  */
 void print_err(infos_t *info, char *err)
 {
-	_puts(info->file_name);
-	_puts(": ");
+	_errputs(info->file_name);
+	_errputs(": ");
 	print_dec(info->err_count, STDERR_FILENO);
-	_puts(": ");
-	_puts(info->argv[0]);
-	_puts(": ");
-	_puts(err);
+	_errputs(": ");
+	_errputs(info->argv[0]);
+	_errputs(": ");
+	_errputs(err);
 }
 
 /**

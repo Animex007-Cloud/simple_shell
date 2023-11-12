@@ -62,3 +62,23 @@ int _atoi(char *str)
 		result = output;
 	return (result);
 }
+
+/**
+ * _errputs - Entry point
+ * @str: the error string to be printed.
+ * Description: prints an inputted string (error).
+ *
+ * Return: Nothing.
+ */
+void _errputs(char *str)
+{
+	int a = 0;
+
+	if (!str)
+		return;
+	while (str[a] != '\0')
+	{
+		_errputchar(str[a]);
+		++a;
+	}
+}

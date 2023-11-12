@@ -19,7 +19,7 @@ int shell_exit(infos_t *info)
 		{
 			info->stats = 2;
 			print_err(info, "Illegal usage: ");
-			_puts(info->argv[1]);
+			_errputs(info->argv[1]);
 			_errputchar('\n');
 			return (1);
 		}
@@ -71,7 +71,7 @@ int my_cd(infos_t *info)
 	if (chdir_ret == -1)
 	{
 		print_err(info, "can't cd to ");
-		_puts(info->argv[1]), _errputchar('\n');
+		_errputs(info->argv[1]), _errputchar('\n');
 	}
 	else
 	{
