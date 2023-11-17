@@ -60,7 +60,7 @@ typedef struct list_s
  * @alias: the node alias.
  * @env_changed: switch mode if environment changed.
  * @history: the history node.
- * @stats: the return status value of executed command.
+ * @status: the return status value of executed command.
  * @cmd_buff: address of pointer to the cmd buffer.
  * @cmd_buff_type: command type and operators.
  * @read_fd: read line input.
@@ -81,7 +81,7 @@ typedef struct infos
 	list_t *alias;
 	int env_changed;
 	list_t *history;
-	int stats;
+	int status;
 	char **cmd_buff;
 	int cmd_buff_type;
 	int read_fd;

@@ -52,7 +52,7 @@ int rvars(infos_t *info)
 
 		if (!_strcmp(info->argv[a], "$?"))
 		{
-			rstr(&(info->argv[a]), _strdup(converter(info->stats, 10, 0)));
+			rstr(&(info->argv[a]), _strdup(converter(info->status, 10, 0)));
 			continue;
 		}
 		if (!_strcmp(info->argv[a], "$$"))

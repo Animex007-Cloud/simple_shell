@@ -17,7 +17,7 @@ int shell_exit(infos_t *info)
 		check = err_atoi(info->argv[1]);
 		if (check == -1)
 		{
-			info->stats = 2;
+			info->status = 2;
 			print_err(info, "Illegal usage: ");
 			_errputs(info->argv[1]);
 			_errputchar('\n');
