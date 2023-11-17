@@ -64,14 +64,14 @@ void if_chain(infos_t *info, char *buff, size_t *a, size_t i, size_t len)
 
 	if (info->cmd_buff_type == CMD_AND)
 	{
-		if (info->stats)
+		if (info->status)
 		{
 			buff[i] = 0;
 			b = len;
 		}
 		if (info->cmd_buff_type == CMD_OR)
 		{
-			if (!info->stats)
+			if (!info->status)
 			{
 				buff[i] = 0;
 				b = len;
